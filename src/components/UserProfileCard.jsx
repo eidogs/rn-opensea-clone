@@ -1,11 +1,25 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import colors from '../theme/colors'
+import React from "react";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import colors from "../theme/colors";
 
 const UserProfileCard = ({ title, username, coverImage, avatar, verified }) => {
+	const navigation = useNavigation();
 	return (
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity
+			style={styles.container}
+			onPress={() =>
+				navigation.navigate("UserProfile", {
+					user: {
+						title,
+						image: avatar,
+						coverImage: coverImage,
+						verified,
+					},
+				})
+			}
+		>
 			<View style={styles.topContainer}>
 				<Image source={{ uri: coverImage }} style={styles.coverImage} />
 			</View>
@@ -13,13 +27,20 @@ const UserProfileCard = ({ title, username, coverImage, avatar, verified }) => {
 			<View style={styles.bottomContainer}>
 				<View style={styles.usernameDetails}>
 					<Text style={styles.title}>{title}</Text>
-					{verified && <MaterialCommunityIcons name="check-decagram" size={15} color={colors.primary} style={styles.icon} />}
+					{verified && (
+						<MaterialCommunityIcons
+							name="check-decagram"
+							size={15}
+							color={colors.primary}
+							style={styles.icon}
+						/>
+					)}
 				</View>
 				<Text style={styles.username}>{username}</Text>
 			</View>
 		</TouchableOpacity>
-	)
-}
+	);
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -30,55 +51,55 @@ const styles = StyleSheet.create({
 		shadowColor: colors.medium,
 		shadowOffset: {
 			width: 0,
-			height: 10
+			height: 10,
 		},
-		shadowOpacity: 0.20,
+		shadowOpacity: 0.2,
 		shadowRadius: 3.41,
 		elevation: 3,
 		borderTopLeftRadius: 20,
 		borderBottomLeftRadius: 20,
-		borderBottomRightRadius: 20
+		borderBottomRightRadius: 20,
 	},
 	topContainer: {
-		flex: 1
+		flex: 1,
 	},
 	coverImage: {
 		width: 185,
 		height: 100,
 		borderTopLeftRadius: 20,
-		borderTopRightRadius: 20
+		borderTopRightRadius: 20,
 	},
 	avatar: {
-		position: 'absolute',
+		position: "absolute",
 		width: 50,
 		height: 50,
 		borderRadius: 25,
 		borderWidth: 3,
 		borderColor: colors.white,
 		top: 75,
-		left: 70
+		left: 70,
 	},
 	bottomContainer: {
 		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	usernameDetails: {
 		marginTop: 20,
-		flexDirection: 'row',
-		alignItems: 'center',
+		flexDirection: "row",
+		alignItems: "center",
 	},
 	title: {
 		fontSize: 15,
 		marginBottom: 5,
-		fontWeight: 'bold'
+		fontWeight: "bold",
 	},
 	icon: {
-		marginLeft: 5
+		marginLeft: 5,
 	},
 	username: {
-		color: colors.primary
-	}
-})
+		color: colors.primary,
+	},
+});
 
-export default UserProfileCard
+export default UserProfileCard;

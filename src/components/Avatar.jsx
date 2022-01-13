@@ -4,12 +4,12 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import colors from '../theme/colors';
 
-const Avatar = ({ image, size = 50, online, circle }) => {
+const Avatar = ({ image, size = 50, online, circle, style }) => {
 	return (
 		<View style={[styles.container, {
 			width: size,
 			height: size
-		}]}>
+		}, style]}>
 			{circle && online && <MaterialCommunityIcons style={[styles.icon, {
 				left: size * 0.75,
 				top: size * 0.02

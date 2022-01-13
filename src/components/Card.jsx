@@ -1,11 +1,19 @@
 import React from 'react'
-import { Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import colors from '../theme/colors';
 
 const Card = ({title, image, size, type = "default"}) => {
 	const navigation = useNavigation();
+
+	const handleNavigation = () => {
+		if (type === "category") {
+			navigation.navigate('Category', { category: { title, image } });
+		} else {
+			navigation.navigate('UserProfile', { user: { title, image } });
+		}
+	}
 	return (
 		<TouchableOpacity style={styles.container} onPress={handleNavigation}>
 			<Image source={{ uri: image }} style={[styles.image, {
