@@ -1,11 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+
 import colors from '../theme/colors'
 
 const NFTCard = ({ user, title, price, likes, image }) => {
+	const navigation = useNavigation();
+
 	return (
-		<TouchableOpacity style={styles.container}>
+		<TouchableOpacity style={styles.container} onPress={() => navigation.navigate("NFTDetails", { nft: { user, title, likes, image, price, }})}>
 			<View style={styles.imageContainer}>
 				<Image source={{ uri: image }} style={styles.image} />
 			</View>
@@ -38,17 +42,18 @@ const NFTCard = ({ user, title, price, likes, image }) => {
 };
 const styles = StyleSheet.create({
 	container: {
-		height: 350,
-		width: 200,
+		height: 300,
+		width: 185,
 		marginHorizontal: 10,
 		borderWidth: 0.5,
 		borderColor: colors.medium,
 		borderRadius: 20,
 		alignItems: 'center',
-		justifyContent: 'space-around'
+		justifyContent: 'space-around',
+		marginBottom: 10
 	},
 	image: {
-		width: 180,
+		width: 160,
 		height: 100,
 		borderRadius: 10
 	},
