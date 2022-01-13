@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "OpenSeaClone",
-    "slug": "OpenSeaClone",
+    "name": "OpenSea",
+    "slug": "OpenSea",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
