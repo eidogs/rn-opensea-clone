@@ -1,11 +1,13 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 import colors from '../theme/colors';
 
-const Card = ({title, image, size, type = "default", onCardPress}) => {
+const Card = ({title, image, size, type = "default"}) => {
+	const navigation = useNavigation();
 	return (
-		<TouchableOpacity style={styles.container} onPress={onCardPress}>
+		<TouchableOpacity style={styles.container} onPress={handleNavigation}>
 			<Image source={{ uri: image }} style={[styles.image, {
 				width: size,
 				height: size

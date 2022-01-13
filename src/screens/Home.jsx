@@ -8,7 +8,7 @@ import Section from '../components/Section'
 import data from '../data/mockData';
 import colors from '../theme/colors'
 
-const Home = () => {
+const Home = ({ navigation }) => {
 	return (
 		<ScrollView contentContainerStyle={styles.container}>
 			<Section DataComponent={Card} data={data.categories} />
